@@ -1,7 +1,7 @@
 <div class="p-5">
   <tabset>
     <tab heading="Pay Bills" id="tab1">
-      <table class="table table-bordered">
+      <!-- <table class="table table-bordered">
         <thead>
           <tr>
             <th scope="col">Payee</th>
@@ -33,7 +33,46 @@
             <td>{{element.account}}</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
+      <div class="card">
+        <div class="card-header">
+          <div class="row col-sm-12">
+            <div class="col-sm-6">
+              Payee
+            </div>
+            <div class="col-sm-6 pl-4">
+              Account
+            </div>
+          </div>
+        </div>
+        <!-- <div class="card-body"> -->
+          <div class="row col-sm-12" *ngFor="let element of bills;">
+            <div class="col-sm-6 card-body border-bottom">
+              <span class="text-left">{{element.payee}}</span>
+              <span class="pull-right">                
+                <div class="btn-group" dropdown>
+                  <span dropdown class="mr-2" (onShown)="onShown()" [autoClose]="true" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()">
+                      <a href id="basic-link" dropdownToggle (click)="false"
+                          aria-controls="basic-link-dropdown">
+                          <i class="fa fa-ellipsis-v"></i>
+                      </a>
+                      <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu dropdown-menu-left"
+                          role="menu" aria-labelledby="basic-link">
+                        <span class="pull-right mr-2" (click)="dropDownMenuClick=true"><i class="fa fa-close"></i></span>
+                        <li *ngFor="let choice of items">
+                          <a class="dropdown-item" href="#">{{choice}}</a>
+                        </li>
+                      </ul>
+                    </span>
+                </div>
+              </span>
+            </div>
+            <div class="col-sm-6 card-body border-bottom border-left">
+              {{element.account}}
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
     </tab>
     <tab heading="Recurring Bills">
         Recurring Bills content goes here!
